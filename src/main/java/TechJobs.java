@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -120,11 +121,22 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
+        for (int i = 0; i < someJobs.size(); i++) {
+            System.out.println("*****");
+
+            for (Map.Entry<String, String> job: someJobs.get(i).entrySet()) {
+                 System.out.printf(job.getKey() + ": " + job.getValue() +"\n");
+            }
+
+            System.out.println("*****" + "\n");
+        }
+
+    }
 
 
 
 
-//this code prints out all the jobs, but does not do it nicely, also it does not print the error message
+//this code prints out all the jobs, but does not do it efficiently or with clean code, also it does not print the error message
         /*
 
         HashMap[] arrayListToArray = new HashMap[someJobs.size()];
@@ -152,7 +164,7 @@ public class TechJobs {
 
 
 
-    }
+
 
 
 }
