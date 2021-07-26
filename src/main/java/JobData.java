@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -90,16 +87,47 @@ public class JobData {
     /**
      * Search all columns for the given term
      *
-     * @param value The search term to look for
+     * @param searchItem The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
-    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+    public static ArrayList<HashMap<String, String>> findByValue(String searchItem) {
 
         // load data, if not already loaded
         loadData();
 
         // TODO - implement this method
-        return null;
+
+        ArrayList<HashMap<String, String>> jobSubset = new ArrayList<>();
+
+        Set<String> keys = allJobs.keySet();
+        for (String key : keys) {
+            for (HashMap<String, String> row: allJobs) {
+                String aItem = row.get(key);
+
+                if (aItem.contains(searchItem)) {
+                    jobSubset.add(row);
+                }
+        }
+
+
+
+
+//
+
+
+//            searching the HashMap Keys doesn't work because the keys are the column headers
+//            if (word.containsKey(searchItem)) {
+//                jobSubset.add(word);
+//            }
+//because it's searching for the whole word as a value in key/value pair, it doesn't pull Ruby, with the comma
+//            do I need to make it a String like in example above to do comparison and use .contains?
+//            if (word.containsValue(searchItem)) {
+//                jobSubset.add(word);
+//            }
+        }
+        return jobSubset;
+
+//        return null;
     }
 
     /**
