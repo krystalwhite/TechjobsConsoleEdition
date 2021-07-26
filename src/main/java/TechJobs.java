@@ -118,17 +118,24 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    // Print a list of jobs by iterating through the ArrayList and then by pulling the key / value pairs from the HashMap using the .entrySet() method
+//    .printf concatenates all the printing
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
+        if (someJobs.size() == 0) {
+            System.out.println("No Results");
+        } else {
+
         for (int i = 0; i < someJobs.size(); i++) {
-            System.out.println("*****");
+            System.out.println("\n*****");
 
             for (Map.Entry<String, String> job: someJobs.get(i).entrySet()) {
                  System.out.printf(job.getKey() + ": " + job.getValue() +"\n");
             }
 
-            System.out.println("*****" + "\n");
+            System.out.println("*****");
+        }
+
         }
 
     }
