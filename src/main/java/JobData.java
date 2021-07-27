@@ -103,20 +103,26 @@ public class JobData {
 //        iterates through the allJobs ArrayList and pulls out each individual HashMap element
         for (HashMap<String, String> row : allJobs) {
 
+//            pulls out each key from within the HashMaps
+            for (String key : row.keySet()) {
 
+//                pulls the HashMap value (a String) and uses the .contains method to compare characters not just the whole key or whole value
+                String aItem = row.get(key).toLowerCase();
+                String searchItemLower = searchItem.toLowerCase();
 
+                if (aItem.contains(searchItemLower)) {
+                    jobSubset.add(row);
+                }
+            }
         }
 
-
-
-
+        return jobSubset;
 
 
 //I want to get the collection of keys and then iterate through them to get their values, confirm they are Strings and then use the .contains method to determine whether or not to add them to the ArrayList for publishing
 //        I cannot figure out how to iterate through the Set???
 
-//        Set<String> keys = allJobs.keySet();
-//        for (String key : keys) {
+//        for (String key : allJobs.keySet()) {
 //            for (HashMap<String, String> row: allJobs) {
 //                String aItem = row.get(key);
 //
@@ -124,13 +130,7 @@ public class JobData {
 //                    jobSubset.add(row);
 //                }
 //        }
-//
-//
-//
-//
-////
-//
-//
+
 ////            searching the HashMap Keys doesn't work because the keys are the column headers
 ////            if (word.containsKey(searchItem)) {
 ////                jobSubset.add(word);
@@ -143,7 +143,7 @@ public class JobData {
 //        }
 //        return jobSubset;
 
-        return null;
+//        return null;
     }
 
     /**
