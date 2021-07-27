@@ -74,9 +74,10 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = row.get(column).toLowerCase();
+            String searchLower = value.toLowerCase();
 
-            if (aValue.contains(value)) {
+            if (aValue.contains(searchLower)) {
                 jobs.add(row);
             }
         }
@@ -99,35 +100,50 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobSubset = new ArrayList<>();
 
-        Set<String> keys = allJobs.keySet();
-        for (String key : keys) {
-            for (HashMap<String, String> row: allJobs) {
-                String aItem = row.get(key);
+//        iterates through the allJobs ArrayList and pulls out each individual HashMap element
+        for (HashMap<String, String> row : allJobs) {
 
-                if (aItem.contains(searchItem)) {
-                    jobSubset.add(row);
-                }
+
+
         }
 
 
 
 
+
+
+//I want to get the collection of keys and then iterate through them to get their values, confirm they are Strings and then use the .contains method to determine whether or not to add them to the ArrayList for publishing
+//        I cannot figure out how to iterate through the Set???
+
+//        Set<String> keys = allJobs.keySet();
+//        for (String key : keys) {
+//            for (HashMap<String, String> row: allJobs) {
+//                String aItem = row.get(key);
 //
+//                if (aItem.contains(searchItem)) {
+//                    jobSubset.add(row);
+//                }
+//        }
+//
+//
+//
+//
+////
+//
+//
+////            searching the HashMap Keys doesn't work because the keys are the column headers
+////            if (word.containsKey(searchItem)) {
+////                jobSubset.add(word);
+////            }
+////because it's searching for the whole word as a value in key/value pair, it doesn't pull Ruby, with the comma
+////            do I need to make it a String like in example above to do comparison and use .contains?
+////            if (word.containsValue(searchItem)) {
+////                jobSubset.add(word);
+////            }
+//        }
+//        return jobSubset;
 
-
-//            searching the HashMap Keys doesn't work because the keys are the column headers
-//            if (word.containsKey(searchItem)) {
-//                jobSubset.add(word);
-//            }
-//because it's searching for the whole word as a value in key/value pair, it doesn't pull Ruby, with the comma
-//            do I need to make it a String like in example above to do comparison and use .contains?
-//            if (word.containsValue(searchItem)) {
-//                jobSubset.add(word);
-//            }
-        }
-        return jobSubset;
-
-//        return null;
+        return null;
     }
 
     /**

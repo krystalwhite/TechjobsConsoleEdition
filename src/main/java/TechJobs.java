@@ -123,7 +123,7 @@ public class TechJobs {
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
         if (someJobs.size() == 0) {
-            System.out.println("No Results");
+            System.out.printf("No Results");
         } else {
 
         for (int i = 0; i < someJobs.size(); i++) {
