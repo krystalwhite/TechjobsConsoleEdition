@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 
+import java.util.Collections;
+
 /**
  * Created by LaunchCode
  */
@@ -117,74 +119,48 @@ public class JobData {
         }
 
         return jobSubset;
-
-
-//I want to get the collection of keys and then iterate through them to get their values, confirm they are Strings and then use the .contains method to determine whether or not to add them to the ArrayList for publishing
-//        I cannot figure out how to iterate through the Set???
-
-//        for (String key : allJobs.keySet()) {
-//            for (HashMap<String, String> row: allJobs) {
-//                String aItem = row.get(key);
-//
-//                if (aItem.contains(searchItem)) {
-//                    jobSubset.add(row);
-//                }
-//        }
-
-////            searching the HashMap Keys doesn't work because the keys are the column headers
-////            if (word.containsKey(searchItem)) {
-////                jobSubset.add(word);
-////            }
-////because it's searching for the whole word as a value in key/value pair, it doesn't pull Ruby, with the comma
-////            do I need to make it a String like in example above to do comparison and use .contains?
-////            if (word.containsValue(searchItem)) {
-////                jobSubset.add(word);
-////            }
-//        }
-//        return jobSubset;
-
-//        return null;
     }
 
-    /**
-     * Read in data from a CSV file and store it in a list
-     */
-    private static void loadData() {
+        /**
+         * Read in data from a CSV file and store it in a list
+         */
+        public static void loadData() {
 
-        // Only load data once
-        if (isDataLoaded) {
-            return;
-        }
-
-        try {
-
-            // Open the CSV file and set up pull out column header info and records
-            Reader in = new FileReader(DATA_FILE);
-            CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
-            List<CSVRecord> records = parser.getRecords();
-            Integer numberOfColumns = records.get(0).size();
-            String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
-
-            allJobs = new ArrayList<>();
-
-            // Put the records into a more friendly format
-            for (CSVRecord record : records) {
-                HashMap<String, String> newJob = new HashMap<>();
-
-                for (String headerLabel : headers) {
-                    newJob.put(headerLabel, record.get(headerLabel));
-                }
-
-                allJobs.add(newJob);
+            // Only load data once
+            if (isDataLoaded) {
+                return;
             }
 
-            // flag the data as loaded, so we don't do it twice
-            isDataLoaded = true;
+            try {
 
-        } catch (IOException e) {
-            System.out.println("Failed to load job data");
-            e.printStackTrace();
+                // Open the CSV file and set up pull out column header info and records
+                Reader in = new FileReader(DATA_FILE);
+                CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
+                List<CSVRecord> records = parser.getRecords();
+                Integer numberOfColumns = records.get(0).size();
+                String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
+
+                allJobs = new ArrayList<>();
+
+                // Put the records into a more friendly format
+                for (CSVRecord record : records) {
+                    HashMap<String, String> newJob = new HashMap<>();
+
+                    for (String headerLabel : headers) {
+                        newJob.put(headerLabel, record.get(headerLabel));
+                    }
+
+                    allJobs.add(newJob);
+                }
+
+                // flag the data as loaded, so we don't do it twice
+                isDataLoaded = true;
+
+            } catch (IOException e) {
+                System.out.println("Failed to load job data");
+                e.printStackTrace();
+            }
         }
     }
 
-}
+
