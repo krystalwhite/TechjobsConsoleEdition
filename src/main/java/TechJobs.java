@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -117,9 +118,59 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    // Print a list of jobs by iterating through the ArrayList and then by pulling the key / value pairs from the HashMap using the .entrySet() method
+//    .printf concatenates all the printing
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() == 0) {
+            System.out.printf("No Results");
+        } else {
+
+        for (int i = 0; i < someJobs.size(); i++) {
+            System.out.println("\n*****");
+
+            for (Map.Entry<String, String> job: someJobs.get(i).entrySet()) {
+                 System.out.printf(job.getKey() + ": " + job.getValue() +"\n"); }
+
+            System.out.println("*****");
+        }
+
+        }
+
     }
+
+
+
+
+//this code prints out all the jobs, but does not do it efficiently or with clean code, also it does not print the error message
+        /*
+
+        HashMap[] arrayListToArray = new HashMap[someJobs.size()];
+        arrayListToArray = someJobs.toArray(arrayListToArray);
+
+        //        iterate through the array to begin
+        for (int index = 0; index < arrayListToArray.length; index++) {
+
+            //            iterate through the hashmaps next
+            for (int hashIndex = 0; hashIndex<1 ; hashIndex++) {
+                System.out.println("*****");
+                System.out.println("position type: " + arrayListToArray[index].get("position type"));
+                System.out.println("name: " + arrayListToArray[index].get("name"));
+                System.out.println("employer: " + arrayListToArray[index].get("employer"));
+                System.out.println("location: " + arrayListToArray[index].get("location"));
+                System.out.println("core competency: " + arrayListToArray[index].get("core competency"));
+                System.out.println("*****" + "\n");
+            }
+        }
+
+        */
+
+
+
+
+
+
+
+
+
 }
